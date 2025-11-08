@@ -11,6 +11,12 @@ ipv6 address 2001:db8:13::1/64
 ipv6 ospf 10 area 0
 no shutdown
 exit
+interface Ethernet0/3
+description Link to PC1
+ipv6 address 2001:db8:a1::1/64
+ipv6 ospf 10 area 0
+no shutdown
+exit
 ipv6 router ospf 10
 router-id 1.1.1.1
 exit
