@@ -10,17 +10,29 @@ topology:
     router1:
       kind: cisco_iol
       image: docker.io/arthurk99/cisco-iol:17.15.01
-      #startup-config: config/config-r1.partial
+      startup-config: config/config-r1.partial
     
     router2:
       kind: cisco_iol
       image: docker.io/arthurk99/cisco-iol:17.15.01
-      #startup-config: config/config-r2.partial
+      startup-config: config/config-r2.partial
       
     router3:
       kind: cisco_iol
       image: docker.io/arthurk99/cisco-iol:17.15.01
-      #startup-config: config/config-r3.partial       
+      startup-config: config/config-r3.partial
+
+    PC1:
+      kind: linux # "Alpine Linux v3.12"
+      image: ghcr.io/hellt/network-multitool
+
+    PC2:
+      kind: linux # "Alpine Linux v3.12"
+      image: ghcr.io/hellt/network-multitool  
+
+    PC3:
+      kind: linux # "Alpine Linux v3.12"
+      image: ghcr.io/hellt/network-multitool
   
   links:
     - endpoints: ["router1:Ethernet0/1","router2:Ethernet0/1"]
@@ -29,4 +41,10 @@ topology:
       mtu: 1500
     - endpoints: ["router2:Ethernet0/2","router3:Ethernet0/2"]
       mtu: 1500
+    - endpoints: ["router1:Ethernet0/3","PC1:eth1"]
+      mtu: 1500
+    - endpoints: ["router2:Ethernet0/3","PC2:eth1"]
+      mtu: 1500
+    - endpoints: ["router3:Ethernet0/3","PC3:eth1"]
+      mtu: 1500  
     
